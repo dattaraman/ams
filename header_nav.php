@@ -28,8 +28,7 @@ if(isset($_SESSION['loggedinby_autoID'])){
   $res_allemployees = $getdata->getallempdetails();
   $res_noti=$getdata->get_noti_in_header();
   $res_noti_count=$getdata->get_noti_count();
-  $res_prnt_job_count = $getdata->get_prnt_job_count();
-  $res_tasks=$getdata->get_tasks_in_header();
+  
 }
 
 ?>

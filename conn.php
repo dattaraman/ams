@@ -1657,8 +1657,6 @@ public function get_noti_in_header(){
 public function get_noti_count(){
 			$chksql = "SELECT * FROM tbl_notification WHERE isdeleted = 0 AND noti_active = 1 AND active_till>CURDATE()";
 			$stmt = $this->db->prepare($chksql);
-			$stmt->bindParam(':empno', $empno);  
-			$stmt->bindParam(':pass', $pass);
 			$stmt->execute();
 			return $stmt->rowCount();
 }
