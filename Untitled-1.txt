@@ -1,0 +1,217 @@
+ <!-- modal add1 -->
+  <div class="modal fade" id="modal_add_printer">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          
+            <div class="modal-header">
+              <h4 class="modal-title">Add PC</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <div class="card-body">
+                <!-- AAAAA -->
+                <div id="accordion">
+                  <form name="addprinterform" id="addprinterform" method="POST">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <a class="btn btn-link" data-toggle="collapse" data-target="#collapseOneP" aria-expanded="true" aria-controls="collapseOneP">
+                        <label for="printer_purchase">Mode of acquisition <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="Mode of acquisition/purchase of device"></span>
+                          </a>
+                      </h5>
+                      <div id="sel_printer_mode" class="text-sm text-secondary text-bold"></div>
+                    </div>
+
+                    <div id="collapseOneP" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                        <div class="row">
+                        <div class="col-lg-12 col-12">
+                        <div class="form-group">
+                    
+                          <!-- <span class="text-primary font-weight-bold fas fa-info-circle" ></span> -->
+                          </label>
+                          
+                          <select class="form-control select2" id="printer_purchase" style="width: 100%;" name="printer_purchase">
+                            <!-- <option value="Alloted">Alloted by division</option> -->
+                            <option value="Centralize">Alloted by division / Centralize purchase</option>
+                            <option value="Individual">Individual/Group purchase by indent</option>
+                            <option value="Borrowed">Borrowed from someone</option>
+                          </select><br>
+                          <button type="button" id="btn_printer_sel_mode" class=" btn btn-sm btn-primary">Next</button>
+                        </div>    
+                      </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="card pcenp">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                          <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsecentralPrinterPurchase" aria-expanded="false" aria-controls="collapsecentralPurchase">
+                          <label>Device details <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="Device Details"></span>
+                          </a>
+                      </h5>
+                      <div id="sel_makeos" class="text-sm text-secondary text-bold"></div>
+                    </div>
+                    <div id="collapsecentralPrinterPurchase" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                        <!-- ROW -->
+                        <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                          <label for="printer_make">Select PC make/model 
+                          <!-- <span class="text-primary font-weight-bold fas fa-info-circle" ></span> -->
+                          </label>
+                          
+                          <select class="form-control select2" id="printer_make" style="width: 100%;" name="printer_make">
+                          <?php foreach ($row_pcmake as $pcmake){ ?>
+                            <option value="<?=$pcmake['autoID'];?>"><?=$pcos['pc_make'] .'/'.$pcos['pc_model'];?></option>
+                          <?php } ?>
+                          </select>
+                          <input type="hidden" name="pc_make_text" id="pc_make_text">
+                          <input type="hidden" name="pc_model_text" id="pc_model_text">
+                          <input type="hidden" name="pc_form_text" id="pc_form_text">
+                        </div>    
+                      </div>
+
+                      <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                          <label for="pc_os">Operating system</label>
+                          <select class="form-control select2" id="pc_os" style="width: 100%;" name="pc_os">
+                          <?php foreach ($row_os as $pcos){ ?>
+                            <option value="<?=$pcos['autoID'];?>"><?=$pcos['os_name'];?></option>
+                          <?php } ?>
+                          </select>
+                        </div>    
+                      </div>
+                    </div>
+                        <!-- ROW -->
+
+                        <div class="row">
+
+                            <div class="col-lg-4 col-12">
+                              <div class="form-group">
+                                <label for="pc_arch">Architecture <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="x86 (32 bit) OR x86-64 (64 bit) Right Click on My Computer ->Properties"></span></label>
+                                <select class="form-control select2" id="pc_arch" style="width: 100%;" name="pc_arch">
+                                
+                                  <option value="32bit">x86 (32bit)</option>
+                                  <option value="64bit">x86-64 (64bit)</option>
+                                </select>
+                              </div>    
+                            </div>
+
+                            <div class="col-lg-4 col-12">
+                              <div class="form-group">
+                                <label for="pc_ram">RAM (in GB)</label>
+                                <input type="number" class="form-control" id="pc_ram" style="width: 100%;" name="pc_ram" min="1" max="32" placeholder="in GB">
+                              </div>    
+                            </div>
+
+                            <div class="col-lg-4 col-12">
+                              <div class="form-group">
+                                <label for="pc_hdd">Hard-disk(Capacity & Make)</label>
+                                <input type="text" class="form-control" placeholder="HDD details" required="required" id="pc_hdd" name="pc_hdd">
+                              </div>    
+                            </div>
+
+                            </div>
+
+                            <div class="row">
+                      <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                          <label for="pc_ip">IP Address (10 network-INTRA-NET IP)</label>
+                          <input type="text" class="form-control" id="pc_ip" style="width: 100%;" name="pc_ip" placeholder="IP address">
+                        </div>    
+                      </div>
+
+                      <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                          <label for="pc_setup">PC setup</label>
+                          <select class="form-control select2" id="pc_setup" style="width: 100%;" name="pc_setup">
+                          
+                            <option value="internet+intranet">INTRANET + INTRANET (VM)</option>
+                            <option value="intranet">Only intranet</option>
+                            <option value="internet">Only internet</option>
+                          </select>
+                        </div>    
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                          <label for="pc_barc_asset_id">BARC Asset ID <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="Asset ID provided by stores starts with BARC/I..."></span></label>
+                          <input type="text" class="form-control" id="pc_barc_asset_id" style="width: 100%;" name="pc_barc_asset_id" placeholder="BARC/I....">
+                        </div>    
+                      </div>
+
+                      <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                        <label for="pc_amc_id">AMC ID <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="Asset ID provided by AMC company"></span></label>
+                          <input type="text" class="form-control" id="pc_amc_id" style="width: 100%;" name="pc_amc_id" placeholder="PC/...">
+                        </div>   
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                <label for="pc_use">PC use <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="For official work OR for giving service like OPAC etc."></span></label>
+                                <select class="form-control select2" id="pc_use" style="width: 100%;" name="pc_use">
+                                  <option value="official use">Official use</option>
+                                  <option value="service use">Service use</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                <label for="pc_location">PC location <span class="text-primary font-weight-bold fas fa-info-circle" data-toggle="tooltip" title="Location of PC"></span></label>
+                                <input type="text" class="form-control" id="pc_location" style="width: 100%;" name="pc_location" placeholder="Location">
+                              </div>
+                            </div>
+
+
+                    </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer"><!-- modal footer -->
+                <div id="error"></div>
+                <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> <!-- modal footer -->
+                  </div>
+                
+                  </form>
+                  
+
+
+
+                  
+                  
+                </div>
+                <!-- AAAAA -->
+                
+               
+              </div>  <!-- /.card-body -->
+              
+              
+            </div>
+            
+          
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal add1-->

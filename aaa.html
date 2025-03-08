@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui.min.css">
+
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+  $( function() {
+
+getalldata();
+let availableTags = [];
+    function getalldata(){
+     
+     $.ajax({  
+     url: "get_pcs.php",
+     type: "POST",
+     data: {operation:"get_pcmakemodel"},
+     success: function(response){
+       //console.log(response);
+       data = JSON.parse(response);
+       //var availableTags = data.pc_make;
+
+       
+       for(var i=0; i<data.length; i++){
+        availableTags.push(data[i].pc_make);
+        alert(data[i].pc_make)
+       }
+       
+       
+     }
+   });
+   
+
+   }
+    
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+ 
+ 
+</body>
+</html>
